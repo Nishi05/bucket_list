@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'router_provider.dart';
+part of 'meigen_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerHash() => r'fef20c35f5d2067cfd357c6a940a2da795d1445b';
+String _$fetchMeigenHash() => r'bd886f23ece51ca5c20ff4f8397e80b987286c02';
 
-/// See also [router].
-@ProviderFor(router)
-final routerProvider = AutoDisposeProvider<GoRouter>.internal(
-  router,
-  name: r'routerProvider',
+/// See also [fetchMeigen].
+@ProviderFor(fetchMeigen)
+final fetchMeigenProvider = AutoDisposeFutureProvider<Meigen?>.internal(
+  fetchMeigen,
+  name: r'fetchMeigenProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$routerHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$fetchMeigenHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef RouterRef = AutoDisposeProviderRef<GoRouter>;
+typedef FetchMeigenRef = AutoDisposeFutureProviderRef<Meigen?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

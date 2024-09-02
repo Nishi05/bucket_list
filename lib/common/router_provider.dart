@@ -1,4 +1,5 @@
 import 'package:bucket_list/common/widgets/bottom_navigation.dart';
+import 'package:bucket_list/features/bucket/screens/bucket_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -28,7 +29,7 @@ GoRouter router(RouterRef ref) {
                 path: '/bucket',
                 pageBuilder: (context, state) {
                   return const NoTransitionPage(
-                    child: SizedBox(),
+                    child: BucketListScreen(),
                   );
                 },
               ),
