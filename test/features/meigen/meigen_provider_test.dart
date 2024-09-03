@@ -9,7 +9,7 @@ class HttpClientMock extends Mock implements http.Client {}
 
 void main() {
   // mockResponseを返すProviderContainerを取得
-  ProviderContainer getContainer({String body = '', int statusCode = 200}) {
+  ProviderContainer getContainer({String body = '[]', int statusCode = 200}) {
     final httpClient = HttpClientMock();
 
     final mockResponse = http.Response(
