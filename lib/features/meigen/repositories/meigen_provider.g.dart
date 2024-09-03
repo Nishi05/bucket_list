@@ -6,7 +6,7 @@ part of 'meigen_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchMeigenHash() => r'bd886f23ece51ca5c20ff4f8397e80b987286c02';
+String _$fetchMeigenHash() => r'4149baff54e6be4dadf4b705cb53be9a17d4f0d6';
 
 /// See also [fetchMeigen].
 @ProviderFor(fetchMeigen)
