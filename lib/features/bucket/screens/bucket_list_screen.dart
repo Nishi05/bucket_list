@@ -1,5 +1,7 @@
+import 'package:bucket_list/features/bucket/widgets/bucket_list_widget.dart';
 import 'package:bucket_list/features/meigen/widgets/meigen_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BucketListScreen extends ConsumerWidget {
@@ -33,7 +35,9 @@ class BucketListScreen extends ConsumerWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push('/bucket/create');
+            },
             child: const Text(
               '追加する',
               style: TextStyle(
@@ -50,9 +54,11 @@ class BucketListScreen extends ConsumerWidget {
             horizontal: 16,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 4),
               MeigenWidget(),
+              Expanded(child: BucketListWidget()),
             ],
           )),
     );
