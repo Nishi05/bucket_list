@@ -1,5 +1,6 @@
 import 'package:bucket_list/features/bucket/dtos/bucket_dto.dart';
 import 'package:bucket_list/features/bucket/models/bucket_model.dart';
+import 'package:bucket_list/features/bucket/repositories/bucket_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'bucket_list_controller.g.dart';
@@ -7,12 +8,8 @@ part 'bucket_list_controller.g.dart';
 @riverpod
 class BucketListController extends _$BucketListController {
   @override
-  FutureOr<List<Bucket>> build() async {
-    return [];
-  }
-
-  Future<List<Bucket>> fetch() async {
-    return [];
+  FutureOr<List<Bucket>> build() {
+    return ref.read(bucketRepositoryProvider).fetch();
   }
 
   Bucket? get(int id) {
@@ -27,44 +24,26 @@ class BucketListController extends _$BucketListController {
   }
 
   Future<void> createBucket(BucketDto bucketDto) async {
-    state = AsyncValue.data([
-      ...state.value ?? [],
-      Bucket(
-        id: state.value!.length + 1,
-        title: bucketDto.title,
-        description: bucketDto.description,
-        scheduledAt: bucketDto.scheduledAt,
-        priority: bucketDto.priority,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      )
-    ]);
-    return;
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(bucketRepositoryProvider).createBucket(bucketDto);
+      return ref.read(bucketRepositoryProvider).fetch();
+    });
   }
 
   Future<void> updateBucket(int id, BucketDto bucketDto) async {
-    state = AsyncValue.data([
-      for (final bucket in state.value!)
-        if (bucket.id == id)
-          Bucket(
-            id: bucket.id,
-            title: bucketDto.title,
-            description: bucketDto.description,
-            scheduledAt: bucketDto.scheduledAt,
-            priority: bucketDto.priority,
-            createdAt: bucket.createdAt,
-            updatedAt: DateTime.now(),
-          )
-        else
-          bucket
-    ]);
-    return;
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(bucketRepositoryProvider).updateBucket(id, bucketDto);
+      return ref.read(bucketRepositoryProvider).fetch();
+    });
   }
 
   Future<void> deleteBucket(int id) async {
-    state = AsyncValue.data(
-      state.value!.where((element) => element.id != id).toList(),
-    );
-    return;
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await ref.read(bucketRepositoryProvider).deleteBucket(id);
+      return ref.read(bucketRepositoryProvider).fetch();
+    });
   }
 }
